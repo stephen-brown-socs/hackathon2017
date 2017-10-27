@@ -1,1 +1,2 @@
-print("HELP")
+def main():
+	print("HELP")
