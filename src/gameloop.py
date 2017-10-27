@@ -42,7 +42,7 @@ while not done:
     intro.playIntroMessages(screen, 250)
 
     jeremy_location_x += 3
-    jeremy_location_y = + 3
+    jeremy_location_y += 3
 
     pygame.display.flip()
     clock.tick(60)
