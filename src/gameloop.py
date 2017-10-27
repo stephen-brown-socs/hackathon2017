@@ -14,11 +14,6 @@ pygame.display.set_caption("KEEP TALKING AND NOBODY EXPLODES 2")
 done = False
 clock = pygame.time.Clock()
 
-intro_message_1_location_y = 250
-intro_message_2_location_y = 500
-intro_message_3_location_y = 600
-intro_message_4_location_y = 800
-
 jeremy_location_x = 100
 jeremy_location_y = 100
 
