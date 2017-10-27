@@ -3,37 +3,35 @@ import messages
 
 pygame.init()
 
-size = (700, 500)
+# Colour Definitions
+WHITE = (255,255,255)
 
-screen = pygame.display.set_mode(size)
+screen_size = (700, 500)
+
+screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("KEEP TALKING AND NOBODY EXPLODES 2")
 
 done = False
 clock = pygame.time.Clock()
 
-text_location_1_x = 250
-text_location_1_y = 250
-
-text_location_2_x = 250
-text_location_2_y = 500
-
-text_location_3_x = 250
-text_location_3_y = 600
+intro_message_1_location_y = 250
+intro_message_2_location_y = 500
+intro_message_3_location_y = 600
 
 while not done:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			done = True
 	
-	screen.fill((255,255,255))
+	screen.fill(WHITE)
 	
-	messages.displayIntroMessageOne(screen, 250, text_location_1_y)
-	messages.displayIntroMessageTwo(screen, 250, text_location_2_y)
-	messages.displayIntroMessageThree(screen, 250, text_location_3_y)
+	messages.displayIntroMessageOne(screen, 250, intro_message_1_location_y)
+	messages.displayIntroMessageTwo(screen, 250, intro_message_2_location_y)
+	messages.displayIntroMessageThree(screen, 250, intro_message_3_location_y)
 
-	text_location_1_y -= 1
-	text_location_2_y -= 1
-	text_location_3_y -= 1
+	intro_message_1_location_y -= 1
+	intro_message_2_location_y -= 1
+	intro_message_3_location_y -= 1
 
 	pygame.display.flip()
 	clock.tick(60)
