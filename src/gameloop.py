@@ -22,32 +22,34 @@ jeremy_location_y = 100
 bg_x = 600
 bg_y = 360
 
-jeremyImage = pygame.image.load("jeremy.jpg")
+#Probably want to refactor these to a images file
 
-bgImage = pygame.image.load("circuitboard.jpg")
+jeremyImage = pygame.image.load("images/jeremy.jpg")
+
+bgImage = pygame.image.load("images/circuitboard.jpg")
 bgImage = pygame.transform.scale(bgImage,(1200,720))
 
-batteryImg = pygame.image.load("battery.png")
+batteryImg = pygame.image.load("images/battery.png")
 batteryImg = pygame.transform.scale(batteryImg,(150,150))
 battery_x = randint(0, 1000)
 battery_y = randint(0, 500)
 
-sightsImg = pygame.image.load("sights.png")
+sightsImg = pygame.image.load("images/sights.png")
 sightsImg = pygame.transform.scale(sightsImg,(150,150))
 sights_x = randint(0, 1000)
 sights_y = randint(0, 500)
 
-pillImg = pygame.image.load("pill.png")
+pillImg = pygame.image.load("images/pill.png")
 pillImg = pygame.transform.scale(pillImg,(150,150))
 pill_x = randint(0, 1000)
 pill_y = randint(0, 500)
 
-gateImg = pygame.image.load("gate.png")
+gateImg = pygame.image.load("images/gate.png")
 gateImg = pygame.transform.scale(gateImg,(150,150))
 gate_x = randint(0, 1000)
 gate_y = randint(0, 500)
 
-lightningImg = pygame.image.load("lightning.png")
+lightningImg = pygame.image.load("images/lightning.png")
 lightningImg = pygame.transform.scale(lightningImg,(150,150))
 lightning_x = randint(0, 1000)
 lightning_y = randint(0, 500)
