@@ -21,3 +21,9 @@ def displayIntroMessageThree(screen, x_location, y_location):
 def displayIntroMessageFour(screen, x_location, y_location):
 	text = font.render("PRESS Z TO BEGIN", True, BLACK)
 	screen.blit(text, [x_location, y_location])
+	
+#Bind this to somewhere on the game screen with white font, maybe top right corner	
+
+def displayQuitMessage(screen, x_location, y_location):
+	text = font.render("PRESS Z TO QUIT", True, BLACK)
+	screen.blit(text, [x_location, y_location])

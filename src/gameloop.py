@@ -1,5 +1,6 @@
 import pygame
 import intro
+from random import randint
 
 pygame.init()
 
@@ -22,8 +23,34 @@ bg_x = 600
 bg_y = 360
 
 jeremyImage = pygame.image.load("jeremy.jpg")
+
 bgImage = pygame.image.load("circuitboard.jpg")
 bgImage = pygame.transform.scale(bgImage,(1200,720))
+
+batteryImg = pygame.image.load("battery.png")
+batteryImg = pygame.transform.scale(batteryImg,(150,150))
+battery_x = randint(0, 1000)
+battery_y = randint(0, 500)
+
+sightsImg = pygame.image.load("sights.png")
+sightsImg = pygame.transform.scale(sightsImg,(150,150))
+sights_x = randint(0, 1000)
+sights_y = randint(0, 500)
+
+pillImg = pygame.image.load("pill.png")
+pillImg = pygame.transform.scale(pillImg,(150,150))
+pill_x = randint(0, 1000)
+pill_y = randint(0, 500)
+
+gateImg = pygame.image.load("gate.png")
+gateImg = pygame.transform.scale(gateImg,(150,150))
+gate_x = randint(0, 1000)
+gate_y = randint(0, 500)
+
+lightningImg = pygame.image.load("lightning.png")
+lightningImg = pygame.transform.scale(lightningImg,(150,150))
+lightning_x = randint(0, 1000)
+lightning_y = randint(0, 500)
 
 while not intro_done:
     for event in pygame.event.get():
@@ -56,8 +83,13 @@ while not game_done:
 
     screen.fill(BLACK)
 
+
     screen.blit(bgImage, (0,0))
-    
+    screen.blit(batteryImg, (battery_x, battery_y))
+    screen.blit(pillImg, (pill_x, pill_y))
+    screen.blit(lightningImg, (lightning_x, lightning_y))
+    screen.blit(sightsImg, (sights_x, sights_y))
+    screen.blit(gateImg, (gate_x, gate_y))
 
     pygame.display.flip()
     clock.tick(60)
