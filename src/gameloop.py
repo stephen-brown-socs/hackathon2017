@@ -22,12 +22,19 @@ intro_message_4_location_y = 800
 jeremy_location_x = 100
 jeremy_location_y = 100
 
+def beginGame():
+    print("SEND HELP")
+
 jeremyImage = pygame.image.load("jeremy.jpg")
 
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_z:
+                beginGame()
+                done = True
 
     screen.fill(WHITE)
 
@@ -52,3 +59,4 @@ while not done:
     clock.tick(60)
 
 pygame.quit()
+
