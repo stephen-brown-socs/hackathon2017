@@ -1,5 +1,5 @@
 import pygame
-import messages
+import intro
 
 pygame.init()
 
@@ -39,18 +39,7 @@ while not done:
     screen.fill(WHITE)
 
     screen.blit(jeremyImage, (jeremy_location_x, jeremy_location_y))
-
-    messages.displayIntroMessageOne(screen, 250, intro_message_1_location_y)
-    messages.displayIntroMessageTwo(screen, 250, intro_message_2_location_y)
-    messages.displayIntroMessageThree(screen, 250, intro_message_3_location_y)
-    messages.displayIntroMessageFour(screen, 250, intro_message_4_location_y)
-
-    intro_message_1_location_y -= 1
-    intro_message_2_location_y -= 1
-    intro_message_3_location_y -= 1
-
-    if intro_message_4_location_y > 250:
-        intro_message_4_location_y -= 1
+    intro.playIntroMessages(screen, 250)
 
     jeremy_location_x += 3
     jeremy_location_y = + 3
