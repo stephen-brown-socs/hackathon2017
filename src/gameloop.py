@@ -29,6 +29,7 @@ while not intro_done:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_z:
                 intro_done = True
+             
 
     screen.fill(WHITE)
 
@@ -45,6 +46,9 @@ while not game_done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_done = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_z:
+                game_done = True   
 
     screen.fill(BLACK)
 
