@@ -1,4 +1,5 @@
 import pygame
+import messages
 
 pygame.init()
 
@@ -26,15 +27,9 @@ while not done:
 	
 	screen.fill((255,255,255))
 	
-	font = pygame.font.SysFont('Calibri', 25, True, False)
-	text1 = font.render("HELLO SHAUNALD. NEVER GIVE UP", True, (0,0,0))
-	screen.blit(text1, [text_location_1_x, text_location_1_y])
-
-	text2 = font.render("JEREMY SINGER WILL GUIDE YOU", True, (0,0,0))
-	screen.blit(text2, [text_location_2_x, text_location_2_y])
-
-	text3 = font.render("FIND YOUR WAY TO THE TRUE PATH", True, (255,0,0))
-	screen.blit(text3, [text_location_3_x, text_location_3_y])
+	messages.displayIntroMessageOne(screen, 250, text_location_1_y)
+	messages.displayIntroMessageTwo(screen, 250, text_location_2_y)
+	messages.displayIntroMessageThree(screen, 250, text_location_3_y)
 
 	text_location_1_y -= 1
 	text_location_2_y -= 1
