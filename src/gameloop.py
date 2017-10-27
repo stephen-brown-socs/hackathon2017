@@ -5,31 +5,30 @@ pygame.init()
 
 # Colour Definitions
 WHITE = (255, 255, 255)
+BLACK = (0,0,0)
 
 screen_size = (700, 500)
 
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("KEEP TALKING AND NOBODY EXPLODES 2")
 
-done = False
+intro_done = False
+game_done = False
 clock = pygame.time.Clock()
 
 jeremy_location_x = 100
 jeremy_location_y = 100
 
-def beginGame():
-    print("SEND HELP")
-
 jeremyImage = pygame.image.load("jeremy.jpg")
 
-while not done:
+while not intro_done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            done = True
+            intro_done = True
+            game_done = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_z:
-                beginGame()
-                done = True
+                intro_done = True
 
     screen.fill(WHITE)
 
@@ -38,6 +37,18 @@ while not done:
 
     jeremy_location_x += 3
     jeremy_location_y += 3
+
+    pygame.display.flip()
+    clock.tick(60)
+
+while not game_done:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game_done = True
+
+    screen.fill(BLACK)
+
+    screen.blit(jeremyImage, (0,0))
 
     pygame.display.flip()
     clock.tick(60)
