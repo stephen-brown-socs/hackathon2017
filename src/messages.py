@@ -17,3 +17,7 @@ def displayIntroMessageTwo(screen, x_location, y_location):
 def displayIntroMessageThree(screen, x_location, y_location):
 	text = font.render("FIND YOUR WAY TO THE TRUE PATH", True, RED)
 	screen.blit(text, [x_location, y_location])
+
+def displayIntroMessageFour(screen, x_location, y_location):
+	text = font.render("PRESS Z TO BEGIN", True, BLACK)
+	screen.blit(text, [x_location, y_location])
