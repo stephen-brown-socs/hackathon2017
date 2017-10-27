@@ -21,8 +21,9 @@ while not done:
 	screen.fill((255,255,255))
 	
 	font = pygame.font.SysFont('Calibri', 25, True, False)
-	text = font.render("HELLO SHAUNALD. NEVER GIVE UP", True, (0,0,0))
+	text = font.render("HELLO SHAUNALD. NEVER GIVE UP\n\n\n\n\n\n\n\n\n\n", True, (0,0,0))
 	screen.blit(text, [text_location_x, text_location_y])
+	text_location_y -= 1
 
 	pygame.display.flip()
 	clock.tick(60)
