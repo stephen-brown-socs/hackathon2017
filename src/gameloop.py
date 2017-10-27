@@ -7,7 +7,7 @@ pygame.init()
 WHITE = (255, 255, 255)
 BLACK = (0,0,0)
 
-screen_size = (700, 500)
+screen_size = (1200, 720)
 
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("KEEP TALKING AND NOBODY EXPLODES 2")
@@ -18,8 +18,12 @@ clock = pygame.time.Clock()
 
 jeremy_location_x = 100
 jeremy_location_y = 100
+bg_x = 600
+bg_y = 360
 
 jeremyImage = pygame.image.load("jeremy.jpg")
+bgImage = pygame.image.load("circuitboard.jpg")
+bgImage = pygame.transform.scale(bgImage,(1200,720))
 
 while not intro_done:
     for event in pygame.event.get():
@@ -52,7 +56,8 @@ while not game_done:
 
     screen.fill(BLACK)
 
-    screen.blit(jeremyImage, (0,0))
+    screen.blit(bgImage, (0,0))
+    
 
     pygame.display.flip()
     clock.tick(60)
