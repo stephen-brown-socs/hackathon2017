@@ -1,6 +1,8 @@
 import pygame
+import random
 import intro
 import images
+import projectiles
 
 pygame.init()
 
@@ -14,13 +16,14 @@ SCREEN_HEIGHT = 720
 screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 game_title = "KEEP TALKING AND NOBODY EXPLODES 2"
 
-
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption(game_title)
 
 intro_done = False
 game_done = False
 clock = pygame.time.Clock()
+
+projectile_list = pygame.sprite.Group()
 
 while not intro_done:
     for event in pygame.event.get():
@@ -30,7 +33,6 @@ while not intro_done:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_z:
                 intro_done = True
-             
 
     screen.fill(WHITE)
     images.displayIntroImages(screen)
@@ -75,9 +77,24 @@ while not game_done:
             images.Images.battery_x += 4
 
 
+    #roll to spawn a projectile
+    if random.randint(0,130) == 1:
+        proj = projectiles.Projectile(100, 100)
+        proj.rect.x = random.randrange(0, 1100)
+        proj.rect.y = -100
+
+        projectile_list.add(proj)
+
+    #move projectiles
+    for p in projectile_list:
+        p.move(1)
+        if p.rect.y > 720:
+            projectile_list.remove(p)
+
     screen.fill(BLACK)
 
     images.displayMainGameImages(screen)
+    projectile_list.draw(screen)
 
     pygame.display.flip()
     clock.tick(60)
