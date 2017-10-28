@@ -58,30 +58,41 @@ while not game_done:
     # Player 1 Controls
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        if images.Images.spaceship_y >= 0:
+        if images.Images.spaceship_y >= 4:
             images.Images.spaceship_y -= 4
     if keys[pygame.K_s]:
-        if images.Images.spaceship_y <= SCREEN_HEIGHT-4:
+    	#Limiting to SCREEN_HEIGHT - 4 still allows image to go offscreen for some reason
+    	#Artifical limit set
+        if images.Images.spaceship_y <= 550:
             images.Images.spaceship_y += 4
+            print(images.Images.spaceship_y)
     if keys[pygame.K_a]:
-        if images.Images.man_x >= 4:
+        if images.Images.man_x >= -32:
             images.Images.man_x -= 4
+            print(images.Images.man_x)
     if keys[pygame.K_d]:
-        if images.Images.man_x <= SCREEN_WIDTH-4:
+    	#Limiting to SCREEN_WIDTH - 4 still allows image to go offscreen for some reason
+    	#Artificial limit set
+        if images.Images.man_x <= 1080:
             images.Images.man_x += 4
+            print(images.Images.man_x)
 
     # Player 2 Controls
     if keys[pygame.K_i]:
         if images.Images.man_y >= 4:
             images.Images.man_y -= 4
     if keys[pygame.K_k]:
-        if images.Images.man_y <= SCREEN_HEIGHT-4:
+    	#Limiting to SCREEN_HEIGHT - 4 still allows image to go offscreen for some reason
+    	#Artifical limit set
+        if images.Images.man_y <= 550:
             images.Images.man_y += 4
     if keys[pygame.K_j]:
-        if images.Images.spaceship_x >= 4:
+        if images.Images.spaceship_x >= -32:
             images.Images.spaceship_x -= 4
     if keys[pygame.K_l]:
-        if images.Images.spaceship_x <= SCREEN_WIDTH-4:
+    	#Limiting to SCREEN_WIDTH - 4 still allows image to go offscreen for some reason
+    	#Artificial limit set
+        if images.Images.spaceship_x <= 1080:
             images.Images.spaceship_x += 4
 
 
@@ -113,6 +124,7 @@ while not game_done:
     pygame.display.flip()
     clock.tick(60)
 
+
 while not ending_done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -125,6 +137,6 @@ while not ending_done:
     messages.displayEndingMessage(screen, 250, 250)
     messages.displayQuitMessage(screen,250, 500)
     pygame.display.flip()
-    clock.tick(60);
+    clock.tick(60)
 
 pygame.quit()
