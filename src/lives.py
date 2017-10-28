@@ -9,6 +9,7 @@ class Lives:
     lives_block_y = 600
 
     livesImg = pygame.image.load("images/life.png")
+    livesImg = pygame.transform.scale(livesImg, (100, 100))
 
 def displayLives(screen):
 
