@@ -48,7 +48,7 @@ while not game_done:
     # Player 1 Controls
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        if images.Images.battery_y >= 4:
+        if images.Images.battery_y >= 0:
             images.Images.battery_y -= 4
     if keys[pygame.K_s]:
         if images.Images.battery_y <= SCREEN_HEIGHT-4:
