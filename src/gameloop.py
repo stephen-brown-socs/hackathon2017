@@ -42,6 +42,9 @@ all_sprites.add(spaceman)
 
 obstacle_list = pygame.sprite.Group()
 
+# Setup sounds
+explosion_sound = pygame.mixer.Sound("music/explosion.wav")
+
 # Start Music
 pygame.mixer.music.load("music/ALL STAR.wav")
 pygame.mixer.music.play()
@@ -137,6 +140,7 @@ while not game_done:
 
         manCollision = pygame.sprite.spritecollide(spaceman, projectile_list, True)
         if not (len(shipCollision) == 0) or not (len(manCollision) == 0):
+            explosion_sound.play()
             lives.Lives.lives_count -= 1
             if lives.Lives.lives_count == 0:
                 game_done = True
