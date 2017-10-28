@@ -73,10 +73,10 @@ while not game_done:
         if spaceship.rect.y <= SCREEN_HEIGHT-150:
             spaceship.rect.y += 4
     if keys[pygame.K_a]:
-        if spaceman.rect.x >= -30:
+        if spaceman.rect.x >= 0:
             spaceman.rect.x -= 4
     if keys[pygame.K_d]:
-        if spaceman.rect.x <= SCREEN_WIDTH-120:
+        if spaceman.rect.x <= SCREEN_WIDTH-80:
             spaceman.rect.x += 4
 
     # Player 2 Controls
@@ -105,9 +105,10 @@ while not game_done:
         p.move(1)
         if p.rect.y > 720:
             projectile_list.remove(p)
-        collisionMan = p.checkCollision(spaceman.rect)
-        collisionShip = p.checkCollision(spaceship.rect)
-        if collisionMan or collisionShip:
+        shipCollision = pygame.sprite.spritecollide(spaceship, projectile_list, True)
+
+        manCollision = pygame.sprite.spritecollide(spaceman, projectile_list, True)
+        if not (len(shipCollision) == 0) or not (len(manCollision) == 0):
             lives.Lives.lives_count -= 1
             if lives.Lives.lives_count == 0:
                 game_done = True
