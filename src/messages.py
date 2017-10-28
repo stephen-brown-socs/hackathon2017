@@ -25,7 +25,7 @@ def displayIntroMessageFour(screen, x_location, y_location):
 	
 #Bind this to somewhere on the game screen with white font, maybe top right corner	
 def displayEndingMessage(screen, x_location, y_location):
-	text = ending_font.render("YOU ARE WINNER", True, RED)
+	text = ending_font.render("YOU'RE WINNER", True, RED)
 	screen.blit(text, [x_location, y_location])
 
 def displayQuitMessage(screen, x_location, y_location):

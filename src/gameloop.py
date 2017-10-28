@@ -146,7 +146,7 @@ while game_failed:
             game_failed = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_z:
-                faime_failed = False
+                game_failed = False
 
     screen.fill(WHITE)
     messages.displayGameOverMessage(screen, 250, 250)
