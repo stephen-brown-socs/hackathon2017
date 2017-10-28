@@ -11,7 +11,7 @@ class Spaceship(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
 
-        self.rect.x = randint(0, 500)
+        self.rect.x = randint(0, 100)
         self.rect.y = randint(250, 500)
 
 class Spaceman(pygame.sprite.Sprite):
@@ -23,7 +23,7 @@ class Spaceman(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(img, (80, 150))
 
         self.rect = self.image.get_rect()
-        self.rect.x = randint(500,1000)
+        self.rect.x = randint(900,1000)
         self.rect.y = randint(250,500)
 
     def moveX(self, speed):

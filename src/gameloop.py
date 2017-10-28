@@ -43,7 +43,7 @@ all_sprites.add(spaceman)
 obstacle_list = pygame.sprite.Group()
 
 # Start Music
-pygame.mixer.music.load("ALL STAR.wav")
+pygame.mixer.music.load("music/ALL STAR.wav")
 pygame.mixer.music.play()
 
 while not intro_done:
@@ -155,7 +155,12 @@ while not game_done:
 
 pygame.mixer.music.stop()
 
+if not game_failed:
+    pygame.mixer.music.load("music/Victory.mp3")
+    pygame.mixer.music.play()
+
 while not ending_done and not game_failed:
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             ending_done = True
@@ -168,6 +173,9 @@ while not ending_done and not game_failed:
     messages.displayQuitMessage(screen,250, 500)
     pygame.display.flip()
     clock.tick(60)
+
+pygame.mixer.music.load("music/failure.mp3")
+pygame.mixer.music.play()
 
 while game_failed:
     for event in pygame.event.get():
