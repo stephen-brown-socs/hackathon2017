@@ -5,6 +5,7 @@ RED = (255,0,0)
 
 pygame.init()
 font = pygame.font.SysFont('Calibri', 25, True, False)
+ending_font = pygame.font.SysFont('Calibri', 50, True, False)
 
 def displayIntroMessageOne(screen, x_location, y_location):
 	text = font.render("HELLO SHAUNALD, NEVER GIVE UP", True, BLACK)
@@ -23,7 +24,10 @@ def displayIntroMessageFour(screen, x_location, y_location):
 	screen.blit(text, [x_location, y_location])
 	
 #Bind this to somewhere on the game screen with white font, maybe top right corner	
+def displayEndingMessage(screen, x_location, y_location):
+	text = ending_font.render("YOU ARE WINNER", True, RED)
+	screen.blit(text, [x_location, y_location])
 
 def displayQuitMessage(screen, x_location, y_location):
-	text = font.render("PRESS Z TO QUIT", True, BLACK)
+	text = ending_font.render("PRESS Z TO QUIT", True, BLACK)
 	screen.blit(text, [x_location, y_location])

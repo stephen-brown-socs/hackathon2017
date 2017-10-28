@@ -2,6 +2,7 @@ import pygame
 import random
 import intro
 import images
+import messages
 import lives
 import sprites
 
@@ -22,6 +23,7 @@ pygame.display.set_caption(game_title)
 
 intro_done = False
 game_done = False
+ending_done = False
 clock = pygame.time.Clock()
 
 projectile_list = pygame.sprite.Group()
@@ -31,6 +33,7 @@ while not intro_done:
         if event.type == pygame.QUIT:
             intro_done = True
             game_done = True
+            ending_done = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_z:
                 intro_done = True
@@ -47,6 +50,10 @@ while not game_done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_done = True
+            ending_done = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                game_done = True
 
     # Player 1 Controls
     keys = pygame.key.get_pressed()
@@ -105,5 +112,19 @@ while not game_done:
 
     pygame.display.flip()
     clock.tick(60)
+
+while not ending_done:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            ending_done = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_z:
+                ending_done = True
+
+    screen.fill(WHITE)
+    messages.displayEndingMessage(screen, 250, 250)
+    messages.displayQuitMessage(screen,250, 500)
+    pygame.display.flip()
+    clock.tick(60);
 
 pygame.quit()
