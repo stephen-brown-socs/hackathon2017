@@ -1,0 +1,47 @@
+from random import randint
+import pygame
+
+RANDOM_X_MIN = 0
+RANDOM_X_MAX = 1000
+
+RANDOM_Y_MIN = 0
+RANDOM_Y_MAX = 500
+
+def random_x():
+    return randint(RANDOM_X_MIN, RANDOM_X_MAX)
+
+def random_y():
+    return randint(RANDOM_Y_MIN, RANDOM_Y_MAX)
+
+class Images:
+    batteryImg = pygame.image.load("images/battery.png")
+    batteryImg = pygame.transform.scale(batteryImg, (150, 150))
+    battery_x = randint(0, 1000)
+    battery_y = randint(0, 500)
+
+    sightsImg = pygame.image.load("images/sights.png")
+    sightsImg = pygame.transform.scale(sightsImg, (150, 150))
+    sights_x = randint(0, 1000)
+    sights_y = randint(0, 500)
+
+    pillImg = pygame.image.load("images/pill.png")
+    pillImg = pygame.transform.scale(pillImg, (150, 150))
+    pill_x = randint(0, 1000)
+    pill_y = randint(0, 500)
+
+    gateImg = pygame.image.load("images/gate.png")
+    gateImg = pygame.transform.scale(gateImg, (150, 150))
+    gate_x = randint(0, 1000)
+    gate_y = randint(0, 500)
+
+    lightningImg = pygame.image.load("images/lightning.png")
+    lightningImg = pygame.transform.scale(lightningImg, (150, 150))
+    lightning_x = randint(0, 1000)
+    lightning_y = randint(0, 500)
+
+def displayImages(screen):
+    screen.blit(Images.batteryImg, (Images.battery_x, Images.battery_y))
+    screen.blit(Images.pillImg, (Images.pill_x, Images.pill_y))
+    screen.blit(Images.lightningImg, (Images.lightning_x, Images.lightning_y))
+    screen.blit(Images.sightsImg, (Images.sights_x, Images.sights_y))
+    screen.blit(Images.gateImg, (Images.gate_x, Images.gate_y))
