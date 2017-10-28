@@ -9,7 +9,9 @@ WHITE = (255, 255, 255)
 BLACK = (0,0,0)
 
 # Other Configuration Options
-screen_size = (1200, 720)
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 720
+screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 game_title = "KEEP TALKING AND NOBODY EXPLODES 2"
 
 
@@ -46,23 +48,31 @@ while not game_done:
     # Player 1 Controls
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        images.Images.battery_y -= 4
+        if images.Images.battery_y >= 4:
+            images.Images.battery_y -= 4
     if keys[pygame.K_s]:
-        images.Images.battery_y += 4
+        if images.Images.battery_y <= SCREEN_HEIGHT-4:
+            images.Images.battery_y += 4
     if keys[pygame.K_a]:
-        images.Images.lightning_x -= 2
+        if images.Images.lightning_x >= 4:
+            images.Images.lightning_x -= 4
     if keys[pygame.K_d]:
-       images.Images.lightning_x += 2
+        if images.Images.lightning_x <= SCREEN_WIDTH-4:
+            images.Images.lightning_x += 4
 
     # Player 2 Controls
     if keys[pygame.K_i]:
-        images.Images.lightning_y -= 2
+        if images.Images.lightning_y >= 4:
+            images.Images.lightning_y -= 4
     if keys[pygame.K_k]:
-        images.Images.lightning_y += 2
+        if images.Images.lightning_y <= SCREEN_HEIGHT-4:
+            images.Images.lightning_y += 4
     if keys[pygame.K_j]:
-        images.Images.battery_x -= 4
+        if images.Images.battery_x >= 4:
+            images.Images.battery_x -= 4
     if keys[pygame.K_l]:
-        images.Images.battery_x += 4
+        if images.Images.battery_x <= SCREEN_WIDTH-4:
+            images.Images.battery_x += 4
 
 
     screen.fill(BLACK)
