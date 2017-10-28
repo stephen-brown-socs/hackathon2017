@@ -26,8 +26,12 @@ class Images:
     spaceship_x = randint(0, 1000)
     spaceship_y = randint(0, 500)
 
+    batteryImg = pygame.image.load("images/battery.png")
+    battery_x = randint(0,1000)
+    battery_y = randint(0, 500)
+
     sightsImg = pygame.image.load("images/sights.png")
-    sightsImg = pygame.transform.scale(sightsImg, (150, 150))
+    #sightsImg = pygame.transform.scale(sightsImg, (150, 150))
     sights_x = randint(0, 1000)
     sights_y = randint(0, 500)
 
@@ -40,6 +44,11 @@ class Images:
     gateImg = pygame.transform.scale(gateImg, (150, 70))
     gate_x = randint(0, 1000)
     gate_y = randint(0, 500)
+
+    lightningImg = pygame.image.load("images/lightning.png")
+    #lightningImg = pygame.transform.scale(lightningImg, (150, 150))
+    lightning_x = randint(0, 1000)
+    lightning_y = randint(0, 500)
 
     manImg = pygame.image.load("images/man.png")
     manImg = pygame.transform.scale(manImg, (150, 150))
@@ -60,6 +69,7 @@ def displayIntroImages(screen):
 def displayMainGameImages(screen):
     screen.blit(Images.bgImage, (Images.bg_x, Images.bg_y))
     screen.blit(Images.spaceshipImg, (Images.spaceship_x, Images.spaceship_y))
+    screen.blit(Images.batteryImg, (Images.battery_x, Images.battery_y))
     screen.blit(Images.pillImg, (Images.pill_x, Images.pill_y))
     screen.blit(Images.manImg, (Images.man_x, Images.man_y))
     screen.blit(Images.sightsImg, (Images.sights_x, Images.sights_y))
