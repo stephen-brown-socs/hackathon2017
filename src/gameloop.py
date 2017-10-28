@@ -17,6 +17,8 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 720
 screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 game_title = "FRIENDSHIP KILLER 2: ELECTRIC BOOGALOO"
+frames_win_condition_held = 0
+frames_win_condition_max = 30
 
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption(game_title)
@@ -24,6 +26,7 @@ pygame.display.set_caption(game_title)
 intro_done = False
 game_done = False
 ending_done = False
+game_failed = False
 clock = pygame.time.Clock()
 
 #sprites
@@ -114,6 +117,16 @@ while not game_done:
                 game_done = True
                 game_failed = True
 
+
+    # Win Condition
+    winCollision = pygame.sprite.spritecollide(spaceman, [spaceship], False)
+    if winCollision:
+        frames_win_condition_held += 1
+
+        if frames_win_condition_held >= frames_win_condition_max:
+            game_done = True
+    else:
+        frames_win_condition_held = 0
 
 
     screen.fill(BLACK)
