@@ -22,27 +22,27 @@ class Images:
 
     # Main Game Images
     spaceshipImg = pygame.image.load("images/spaceship.png")
-    spaceshipImg = pygame.transform.scale(spaceshipImg, (150, 150))
+    #spaceshipImg = pygame.transform.scale(spaceshipImg, (150, 150))
     spaceship_x = randint(0, 1000)
     spaceship_y = randint(0, 500)
 
     sightsImg = pygame.image.load("images/sights.png")
-    sightsImg = pygame.transform.scale(sightsImg, (150, 150))
+    #sightsImg = pygame.transform.scale(sightsImg, (150, 150))
     sights_x = randint(0, 1000)
     sights_y = randint(0, 500)
 
     pillImg = pygame.image.load("images/pill.png")
-    pillImg = pygame.transform.scale(pillImg, (150, 150))
+    #pillImg = pygame.transform.scale(pillImg, (150, 150))
     pill_x = randint(0, 1000)
     pill_y = randint(0, 500)
 
     gateImg = pygame.image.load("images/gate.png")
-    gateImg = pygame.transform.scale(gateImg, (150, 150))
+    #gateImg = pygame.transform.scale(gateImg, (150, 150))
     gate_x = randint(0, 1000)
     gate_y = randint(0, 500)
 
     lightningImg = pygame.image.load("images/lightning.png")
-    lightningImg = pygame.transform.scale(lightningImg, (150, 150))
+    #lightningImg = pygame.transform.scale(lightningImg, (150, 150))
     lightning_x = randint(0, 1000)
     lightning_y = randint(0, 500)
 
