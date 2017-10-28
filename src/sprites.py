@@ -3,16 +3,30 @@ from random import randint, randrange
 
 
 class Spaceship(pygame.sprite.Sprite):
+
+    currentSprite = 0
+    gif = []
+    for i in range(0,5):
+        print
+        gif.append(pygame.image.load("images/spaceship/spaceship_sprite" + str(i) + ".png"))
+
+    still = pygame.image.load("images/spaceship.png")
+    moving = False
+
     def __init__(self):
         super(Spaceship, self).__init__()
-
-        img = pygame.image.load("images/spaceship.png")
-        self.image = pygame.transform.scale(img, (150, 150))
-
+        self.image = pygame.transform.scale(self.still, (50, 50))
         self.rect = self.image.get_rect()
 
         self.rect.x = randint(0, 100)
         self.rect.y = randint(250, 500)
+
+    def chooseSprite(self):
+        if self.moving == False:
+            self.image = self.still;
+        if self.moving:
+            self.image = self.gif[self.currentSprite]
+            self.currentSprite = (self.currentSprite + 1) % 5
 
 class Spaceman(pygame.sprite.Sprite):
     #and his name is Mill Burray, the greatest hero mankind has ever known

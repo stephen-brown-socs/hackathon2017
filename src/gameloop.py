@@ -84,9 +84,11 @@ while not game_done:
     if keys[pygame.K_w]:
         if spaceship.rect.y >= 0:
             spaceship.rect.y -= 4
+            spaceship.moving = True
     if keys[pygame.K_s]:
         if spaceship.rect.y <= SCREEN_HEIGHT-150:
             spaceship.rect.y += 4
+            spaceship.moving = True
     if keys[pygame.K_a]:
         if spaceman.rect.x >= 0:
             spaceman.rect.x -= 4
@@ -104,9 +106,11 @@ while not game_done:
     if keys[pygame.K_j]:
         if spaceship.rect.x >= 4:
             spaceship.rect.x -= 4
+            spaceship.moving = True
     if keys[pygame.K_l]:
         if spaceship.rect.x  <= SCREEN_WIDTH-150:
             spaceship.rect.x += 4
+            spaceship.moving = True
 
     # Obstacle collision
     manObstacleCollision = pygame.sprite.spritecollide(spaceman, obstacle_list, True)
@@ -138,11 +142,13 @@ while not game_done:
                 game_done = True
                 game_failed = True
 
+    spaceship.chooseSprite()
 
     # Check if we've won
     has_won = win_condition.checkWinCondition(spaceman, spaceship)
     if has_won:
         game_done = True
+
 
     screen.fill(BLACK)
 
@@ -191,6 +197,5 @@ while game_failed:
 
     pygame.display.flip()
     clock.tick(60)
-
 
 pygame.quit()
