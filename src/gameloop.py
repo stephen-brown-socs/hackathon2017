@@ -105,9 +105,10 @@ while not game_done:
         p.move(1)
         if p.rect.y > 720:
             projectile_list.remove(p)
-        collisionMan = p.checkCollision(spaceman.rect)
-        collisionShip = p.checkCollision(spaceship.rect)
-        if collisionMan or collisionShip:
+        shipCollision = pygame.sprite.spritecollide(spaceship, projectile_list, True)
+
+        manCollision = pygame.sprite.spritecollide(spaceman, projectile_list, True)
+        if not (len(shipCollision) == 0) or not (len(manCollision) == 0):
             lives.Lives.lives_count -= 1
             if lives.Lives.lives_count == 0:
                 game_done = True
