@@ -32,12 +32,12 @@ class Images:
     sights_y = randint(0, 500)
 
     pillImg = pygame.image.load("images/pill.png")
-    pillImg = pygame.transform.scale(pillImg, (150, 150))
+    pillImg = pygame.transform.scale(pillImg, (150, 120))
     pill_x = randint(0, 1000)
     pill_y = randint(0, 500)
 
     gateImg = pygame.image.load("images/gate.png")
-    gateImg = pygame.transform.scale(gateImg, (150, 150))
+    gateImg = pygame.transform.scale(gateImg, (150, 70))
     gate_x = randint(0, 1000)
     gate_y = randint(0, 500)
 
