@@ -12,7 +12,7 @@ class Spaceship(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         self.rect.x = randint(0, 500)
-        self.rect.y = randint(0, 250)
+        self.rect.y = randint(250, 500)
 
 class Spaceman(pygame.sprite.Sprite):
     #and his name is Mill Burray, the greatest hero mankind has ever known
@@ -59,5 +59,5 @@ class Obstacle(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
 
-        self.rect.x = randrange(0, 1100)
-        self.rect.y = randrange(0, 650)
+        self.rect.x = randrange(0, 1150)
+        self.rect.y = randrange(0, 680)

@@ -55,7 +55,7 @@ def displayIntroImages(screen):
 
 def displayMainGameImages(screen):
     screen.blit(Images.bgImage, (Images.bg_x, Images.bg_y))
-    screen.blit(Images.batteryImg, (Images.battery_x, Images.battery_y))
-    screen.blit(Images.pillImg, (Images.pill_x, Images.pill_y))
-    screen.blit(Images.sightsImg, (Images.sights_x, Images.sights_y))
-    screen.blit(Images.gateImg, (Images.gate_x, Images.gate_y))
+    #screen.blit(Images.batteryImg, (Images.battery_x, Images.battery_y))
+    #screen.blit(Images.pillImg, (Images.pill_x, Images.pill_y))
+    #screen.blit(Images.sightsImg, (Images.sights_x, Images.sights_y))
+    #screen.blit(Images.gateImg, (Images.gate_x, Images.gate_y))

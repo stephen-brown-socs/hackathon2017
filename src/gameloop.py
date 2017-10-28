@@ -16,7 +16,7 @@ BLACK = (0,0,0)
 # Other Configuration Options
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 720
-NUM_OBSTACLES = 25
+NUM_OBSTACLES = 10
 screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 game_title = "FRIENDSHIP KILLER 2: ELECTRIC BOOGALOO"
 
@@ -62,7 +62,7 @@ while not intro_done:
     clock.tick(60)
 
 # Spawn Obstacles
-for x in range(0, 10):
+for x in range(0, NUM_OBSTACLES):
     obstacle = sprites.Obstacle()
     obstacle_list.add(obstacle)
     all_sprites.add(obstacle)
