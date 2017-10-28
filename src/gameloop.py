@@ -105,6 +105,15 @@ while not game_done:
         if spaceship.rect.x  <= SCREEN_WIDTH-150:
             spaceship.rect.x += 4
 
+    # Obstacle collision
+    manObstacleCollision = pygame.sprite.spritecollide(spaceman, obstacle_list, True)
+    shipObstacleCollision = pygame.sprite.spritecollide(spaceship, obstacle_list, True)
+
+    if not (len(manObstacleCollision) == 0) or not (len(shipObstacleCollision) == 0):
+        lives.Lives.lives_count -= 1
+        if lives.Lives.lives_count == 0:
+            game_done = True
+            game_failed = True
 
     #roll to spawn a projectile
     if random.randint(0,60) == 1:
