@@ -26,7 +26,16 @@ game_done = False
 ending_done = False
 clock = pygame.time.Clock()
 
+#sprites
+#all_sprites list there so all sprites can be drawn with a single call
+all_sprites = pygame.sprite.Group()
 projectile_list = pygame.sprite.Group()
+
+spaceship = sprites.Spaceship()
+all_sprites.add(spaceship)
+
+spaceman = sprites.Spaceman()
+all_sprites.add(spaceman)
 
 while not intro_done:
     for event in pygame.event.get():
@@ -39,7 +48,7 @@ while not intro_done:
                 intro_done = True
 
     screen.fill(WHITE)
-    #images.displayIntroImages(screen)
+    images.displayIntroImages(screen)
 
     intro.playIntroMessages(screen, 250)
 
@@ -58,68 +67,52 @@ while not game_done:
     # Player 1 Controls
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        if images.Images.spaceship_y >= 4:
-            images.Images.spaceship_y -= 4
+        if spaceship.rect.y >= 0:
+            spaceship.rect.y -= 4
     if keys[pygame.K_s]:
-    	#Limiting to SCREEN_HEIGHT - 4 still allows image to go offscreen for some reason
-    	#Artifical limit set
-        if images.Images.spaceship_y <= 550:
-            images.Images.spaceship_y += 4
-            print(images.Images.spaceship_y)
+        if spaceship.rect.y <= SCREEN_HEIGHT-150:
+            spaceship.rect.y += 4
     if keys[pygame.K_a]:
-        if images.Images.man_x >= -32:
-            images.Images.man_x -= 4
-            print(images.Images.man_x)
+        if spaceman.rect.x >= -30:
+            spaceman.rect.x -= 4
     if keys[pygame.K_d]:
-    	#Limiting to SCREEN_WIDTH - 4 still allows image to go offscreen for some reason
-    	#Artificial limit set
-        if images.Images.man_x <= 1080:
-            images.Images.man_x += 4
-            print(images.Images.man_x)
+        if spaceman.rect.x <= SCREEN_WIDTH-120:
+            spaceman.rect.x += 4
 
     # Player 2 Controls
     if keys[pygame.K_i]:
-        if images.Images.man_y >= 4:
-            images.Images.man_y -= 4
+        if spaceman.rect.y >= 4:
+            spaceman.rect.y -= 4
     if keys[pygame.K_k]:
-    	#Limiting to SCREEN_HEIGHT - 4 still allows image to go offscreen for some reason
-    	#Artifical limit set
-        if images.Images.man_y <= 550:
-            images.Images.man_y += 4
+        if spaceman.rect.y <= SCREEN_HEIGHT-150:
+            spaceman.rect.y += 4
     if keys[pygame.K_j]:
-        if images.Images.spaceship_x >= -32:
-            images.Images.spaceship_x -= 4
+        if spaceship.rect.x >= 4:
+            spaceship.rect.x -= 4
     if keys[pygame.K_l]:
-    	#Limiting to SCREEN_WIDTH - 4 still allows image to go offscreen for some reason
-    	#Artificial limit set
-        if images.Images.spaceship_x <= 1080:
-            images.Images.spaceship_x += 4
+        if spaceship.rect.x  <= SCREEN_WIDTH-150:
+            spaceship.rect.x += 4
 
 
     #roll to spawn a projectile
     if random.randint(0,130) == 1:
-        projectile_list.add(sprites.Projectile())
+        proj = sprites.Projectile()
+        projectile_list.add(proj)
+        all_sprites.add(proj)
 
     #move projectiles
     for p in projectile_list:
         p.move(1)
         if p.rect.y > 720:
             projectile_list.remove(p)
-        #collisionMan = p.checkCollision(images.Images.manImg)
-        #collisionShip = p.checkCollision(images.Images.spaceshipImg)
-        #if collisionMan or collisionShip:
-        #    print "Collision!"
-
-
 
     #TODO decrement Lives.lives_count when hit
 
     screen.fill(BLACK)
 
-
     images.displayMainGameImages(screen)
     lives.displayLives(screen)
-    projectile_list.draw(screen)
+    all_sprites.draw(screen)
 
     pygame.display.flip()
     clock.tick(60)

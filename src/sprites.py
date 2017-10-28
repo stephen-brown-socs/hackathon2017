@@ -6,11 +6,31 @@ class Spaceship(pygame.sprite.Sprite):
     def __init__(self):
         super(Spaceship, self).__init__()
 
-        spaceshipImg = pygame.image.load("images/spaceship.png")
-        spaceshipImg = pygame.transform.scale(spaceshipImg, (150, 150))
+        img = pygame.image.load("images/spaceship.png")
+        self.image = pygame.transform.scale(img, (150, 150))
 
-        spaceship_x = randint(0, 1000)
-        spaceship_y = randint(0, 500)
+        self.rect = self.image.get_rect()
+
+        self.rect.x = 500
+        self.rect.y = 500
+
+class Spaceman(pygame.sprite.Sprite):
+    #and his name is Mill Burray, the greatest hero mankind has ever known
+    def __init__(self):
+        super(Spaceman, self).__init__()
+
+        img = pygame.image.load("images/man.png")
+        self.image = pygame.transform.scale(img, (150, 150))
+
+        self.rect = self.image.get_rect()
+        self.rect.x = 500
+        self.rect.y = 500
+
+    def moveX(self, speed):
+        self.rect.x = self.rect.x + speed
+
+    def moveY(self, speed):
+        self.rect.y = self.rect.y + speed
 
 class Projectile(pygame.sprite.Sprite):
     def __init__(self):
@@ -26,6 +46,3 @@ class Projectile(pygame.sprite.Sprite):
 
     def move(self, projectile_speed):
         self.rect.y += projectile_speed
-
-    def checkCollision(self, rect):
-        return pygame.Rect.colliderect(rect)
