@@ -31,3 +31,7 @@ def displayEndingMessage(screen, x_location, y_location):
 def displayQuitMessage(screen, x_location, y_location):
 	text = ending_font.render("PRESS Z TO QUIT", True, BLACK)
 	screen.blit(text, [x_location, y_location])
+
+def displayGameOverMessage(screen, x_location, y_location):
+    text = ending_font.render("YOU FAILED! WHOSE FAULT IS IT?", True, RED)
+    screen.blit(text, [x_location, y_location])

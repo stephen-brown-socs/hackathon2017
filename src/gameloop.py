@@ -111,6 +111,7 @@ while not game_done:
             lives.Lives.lives_count -= 1
             if lives.Lives.lives_count == 0:
                 game_done = True
+                game_failed = True
 
 
 
@@ -124,7 +125,7 @@ while not game_done:
     clock.tick(60)
 
 
-while not ending_done:
+while not ending_done and not game_failed:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             ending_done = True
@@ -137,5 +138,21 @@ while not ending_done:
     messages.displayQuitMessage(screen,250, 500)
     pygame.display.flip()
     clock.tick(60)
+
+while game_failed:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game_failed = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_z:
+                faime_failed = False
+
+    screen.fill(WHITE)
+    messages.displayGameOverMessage(screen, 250, 250)
+    messages.displayQuitMessage(screen, 250, 500)
+
+    pygame.display.flip()
+    clock.tick(60)
+
 
 pygame.quit()
