@@ -14,6 +14,13 @@ def random_y():
     return randint(RANDOM_Y_MIN, RANDOM_Y_MAX)
 
 class Images:
+
+    # Intro Images
+    jeremyImage = pygame.image.load("images/jeremy.jpg")
+    jeremy_x = 100
+    jeremy_y = 100
+
+    # Main Game Images
     batteryImg = pygame.image.load("images/battery.png")
     batteryImg = pygame.transform.scale(batteryImg, (150, 150))
     battery_x = randint(0, 1000)
@@ -39,7 +46,19 @@ class Images:
     lightning_x = randint(0, 1000)
     lightning_y = randint(0, 500)
 
-def displayImages(screen):
+    bgImage = pygame.image.load("images/circuitboard.jpg")
+    bgImage = pygame.transform.scale(bgImage, (1200, 720))
+    bg_x = 0
+    bg_y = 0
+
+def displayIntroImages(screen):
+    Images.jeremy_x += 3
+    Images.jeremy_y += 3
+
+    screen.blit(Images.jeremyImage, (Images.jeremy_x, Images.jeremy_y))
+
+def displayMainGameImages(screen):
+    screen.blit(Images.bgImage, (Images.bg_x, Images.bg_y))
     screen.blit(Images.batteryImg, (Images.battery_x, Images.battery_y))
     screen.blit(Images.pillImg, (Images.pill_x, Images.pill_y))
     screen.blit(Images.lightningImg, (Images.lightning_x, Images.lightning_y))
