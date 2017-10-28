@@ -20,8 +20,6 @@ intro_done = False
 game_done = False
 clock = pygame.time.Clock()
 
-
-
 while not intro_done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -34,6 +32,7 @@ while not intro_done:
 
     screen.fill(WHITE)
     images.displayIntroImages(screen)
+
     intro.playIntroMessages(screen, 250)
 
     pygame.display.flip()
@@ -43,9 +42,28 @@ while not game_done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_done = True
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_z:
-                game_done = True   
+
+    # Player 1 Controls
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        images.Images.battery_y -= 4
+    if keys[pygame.K_s]:
+        images.Images.battery_y += 4
+    if keys[pygame.K_a]:
+        images.Images.lightning_x -= 2
+    if keys[pygame.K_d]:
+       images.Images.lightning_x += 2
+
+    # Player 2 Controls
+    if keys[pygame.K_i]:
+        images.Images.lightning_y -= 2
+    if keys[pygame.K_k]:
+        images.Images.lightning_y += 2
+    if keys[pygame.K_j]:
+        images.Images.battery_x -= 4
+    if keys[pygame.K_l]:
+        images.Images.battery_x += 4
+
 
     screen.fill(BLACK)
 
