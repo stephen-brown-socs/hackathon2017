@@ -3,7 +3,7 @@ import random
 import intro
 import images
 import lives
-import projectiles
+import sprites
 
 pygame.init()
 
@@ -80,24 +80,26 @@ while not game_done:
 
     #roll to spawn a projectile
     if random.randint(0,130) == 1:
-        proj = projectiles.Projectile(100, 100)
-        proj.rect.x = random.randrange(0, 1100)
-        proj.rect.y = -100
-
-        projectile_list.add(proj)
+        projectile_list.add(sprites.Projectile())
 
     #move projectiles
     for p in projectile_list:
         p.move(1)
         if p.rect.y > 720:
             projectile_list.remove(p)
+        #collisionMan = p.checkCollision(images.Images.manImg)
+        #collisionShip = p.checkCollision(images.Images.spaceshipImg)
+        #if collisionMan or collisionShip:
+        #    print "Collision!"
+
 
 
 
     screen.fill(BLACK)
 
-    lives.displayLives(screen)
+
     images.displayMainGameImages(screen)
+    lives.displayLives(screen)
     projectile_list.draw(screen)
 
     pygame.display.flip()

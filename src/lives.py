@@ -8,9 +8,7 @@ class Lives:
     lives_block_x = 900
     lives_block_y = 600
 
-    livesImg = pygame.image.load("images/live.png")
-
-
+    livesImg = pygame.image.load("images/life.png")
 
 def displayLives(screen):
 
@@ -20,3 +18,4 @@ def displayLives(screen):
         for x in range(0, Lives.lives_count):
             screen.blit(Lives.livesImg, (currentLivesPointer, Lives.lives_block_y))
             currentLivesPointer += 100
+            print("DONE WITH LIVES")
