@@ -94,6 +94,7 @@ while not game_done:
 
 
 
+    #TODO decrement Lives.lives_count when hit
 
     screen.fill(BLACK)
 
