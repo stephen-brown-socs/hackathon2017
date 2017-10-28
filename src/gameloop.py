@@ -2,6 +2,7 @@ import pygame
 import random
 import intro
 import images
+import lives
 import projectiles
 
 pygame.init()
@@ -91,8 +92,11 @@ while not game_done:
         if p.rect.y > 720:
             projectile_list.remove(p)
 
+
+
     screen.fill(BLACK)
 
+    lives.displayLives(screen)
     images.displayMainGameImages(screen)
     projectile_list.draw(screen)
 
