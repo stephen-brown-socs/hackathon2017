@@ -95,7 +95,7 @@ while not game_done:
 
 
     #roll to spawn a projectile
-    if random.randint(0,130) == 1:
+    if random.randint(0,60) == 1:
         proj = sprites.Projectile()
         projectile_list.add(proj)
         all_sprites.add(proj)
@@ -105,8 +105,14 @@ while not game_done:
         p.move(1)
         if p.rect.y > 720:
             projectile_list.remove(p)
+        collisionMan = p.checkCollision(spaceman.rect)
+        collisionShip = p.checkCollision(spaceship.rect)
+        if collisionMan or collisionShip:
+            lives.Lives.lives_count -= 1
+            if lives.Lives.lives_count == 0:
+                game_done = True
 
-    #TODO decrement Lives.lives_count when hit
+
 
     screen.fill(BLACK)
 
