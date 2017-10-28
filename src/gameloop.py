@@ -16,7 +16,7 @@ BLACK = (0,0,0)
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 720
 screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
-game_title = "KEEP TALKING AND NOBODY EXPLODES 2"
+game_title = "FRIENDSHIP KILLER 2: ELECTRIC BOOGALOO"
 
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption(game_title)
@@ -39,7 +39,7 @@ while not intro_done:
                 intro_done = True
 
     screen.fill(WHITE)
-    images.displayIntroImages(screen)
+    #images.displayIntroImages(screen)
 
     intro.playIntroMessages(screen, 250)
 

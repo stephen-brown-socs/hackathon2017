@@ -12,7 +12,7 @@ def displayIntroMessageOne(screen, x_location, y_location):
 	screen.blit(text, [x_location, y_location])
 
 def displayIntroMessageTwo(screen, x_location, y_location):
-	text = font.render("JEREMY SINGER WILL GUIDE YOU", True, BLACK)
+	text = font.render("THE SPACESHIP WILL GUIDE YOU", True, BLACK)
 	screen.blit(text, [x_location, y_location])
 
 def displayIntroMessageThree(screen, x_location, y_location):
