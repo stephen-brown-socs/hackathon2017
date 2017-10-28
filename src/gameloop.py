@@ -50,11 +50,11 @@ while not game_done:
     # Player 1 Controls
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
-        if images.Images.battery_y >= 0:
-            images.Images.battery_y -= 4
+        if images.Images.spaceship_y >= 0:
+            images.Images.spaceship_y -= 4
     if keys[pygame.K_s]:
-        if images.Images.battery_y <= SCREEN_HEIGHT-4:
-            images.Images.battery_y += 4
+        if images.Images.spaceship_y <= SCREEN_HEIGHT-4:
+            images.Images.spaceship_y += 4
     if keys[pygame.K_a]:
         if images.Images.lightning_x >= 4:
             images.Images.lightning_x -= 4
@@ -70,11 +70,11 @@ while not game_done:
         if images.Images.lightning_y <= SCREEN_HEIGHT-4:
             images.Images.lightning_y += 4
     if keys[pygame.K_j]:
-        if images.Images.battery_x >= 4:
-            images.Images.battery_x -= 4
+        if images.Images.spaceship_x >= 4:
+            images.Images.spaceship_x -= 4
     if keys[pygame.K_l]:
-        if images.Images.battery_x <= SCREEN_WIDTH-4:
-            images.Images.battery_x += 4
+        if images.Images.spaceship_x <= SCREEN_WIDTH-4:
+            images.Images.spaceship_x += 4
 
 
     #roll to spawn a projectile
