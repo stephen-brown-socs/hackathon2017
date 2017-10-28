@@ -20,7 +20,7 @@ class Spaceman(pygame.sprite.Sprite):
         super(Spaceman, self).__init__()
 
         img = pygame.image.load("images/man.png")
-        self.image = pygame.transform.scale(img, (150, 150))
+        self.image = pygame.transform.scale(img, (80, 150))
 
         self.rect = self.image.get_rect()
         self.rect.x = randint(500,1000)
@@ -37,7 +37,7 @@ class Projectile(pygame.sprite.Sprite):
         super(Projectile, self).__init__()
 
         img = pygame.image.load("images/java.png")
-        self.image = pygame.transform.scale(img, (100, 100))
+        self.image = pygame.transform.scale(img, (50, 100))
 
         self.rect = self.image.get_rect()
 

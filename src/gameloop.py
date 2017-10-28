@@ -73,10 +73,10 @@ while not game_done:
         if spaceship.rect.y <= SCREEN_HEIGHT-150:
             spaceship.rect.y += 4
     if keys[pygame.K_a]:
-        if spaceman.rect.x >= -30:
+        if spaceman.rect.x >= 0:
             spaceman.rect.x -= 4
     if keys[pygame.K_d]:
-        if spaceman.rect.x <= SCREEN_WIDTH-120:
+        if spaceman.rect.x <= SCREEN_WIDTH-80:
             spaceman.rect.x += 4
 
     # Player 2 Controls
