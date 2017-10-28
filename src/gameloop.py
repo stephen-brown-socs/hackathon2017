@@ -116,7 +116,7 @@ while not game_done:
             game_failed = True
 
     #roll to spawn a projectile
-    if random.randint(0,60) == 1:
+    if random.randint(0,130) == 1:
         proj = sprites.Projectile()
         projectile_list.add(proj)
         all_sprites.add(proj)

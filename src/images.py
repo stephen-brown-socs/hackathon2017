@@ -17,8 +17,8 @@ class Images:
 
     # Intro Images
     jeremyImage = pygame.image.load("images/jeremy.jpg")
-    jeremy_x = 100
-    jeremy_y = 100
+    jeremy_x = 700
+    jeremy_y = 50
 
     # Main Game Images
     batteryImg = pygame.image.load("images/battery.png")
@@ -51,9 +51,6 @@ class Images:
     bg_y = 0
 
 def displayIntroImages(screen):
-    Images.jeremy_x += 3
-    Images.jeremy_y += 3
-
     screen.blit(Images.jeremyImage, (Images.jeremy_x, Images.jeremy_y))
 
 def displayMainGameImages(screen):
