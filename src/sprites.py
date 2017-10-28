@@ -49,3 +49,15 @@ class Projectile(pygame.sprite.Sprite):
 
     def checkCollision(self, rect):
         return self.rect.colliderect(rect)
+
+class Obstacle(pygame.sprite.Sprite):
+    def __init__(self):
+        super(Obstacle, self).__init__()
+
+        img = pygame.image.load("images/battery.png")
+        self.image = pygame.transform.scale(img, (50, 25))
+
+        self.rect = self.image.get_rect()
+
+        self.rect.x = randrange(0, 1100)
+        self.rect.y = randrange(0, 650)

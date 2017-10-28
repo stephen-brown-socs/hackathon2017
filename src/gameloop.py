@@ -4,6 +4,7 @@ import intro
 import images
 import messages
 import lives
+import win_condition
 import sprites
 
 pygame.init()
@@ -15,10 +16,9 @@ BLACK = (0,0,0)
 # Other Configuration Options
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 720
+NUM_OBSTACLES = 25
 screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 game_title = "FRIENDSHIP KILLER 2: ELECTRIC BOOGALOO"
-frames_win_condition_held = 0
-frames_win_condition_max = 30
 
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption(game_title)
@@ -40,6 +40,9 @@ all_sprites.add(spaceship)
 spaceman = sprites.Spaceman()
 all_sprites.add(spaceman)
 
+obstacle_list = pygame.sprite.Group()
+
+
 while not intro_done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -57,6 +60,12 @@ while not intro_done:
 
     pygame.display.flip()
     clock.tick(60)
+
+# Spawn Obstacles
+for x in range(0, 10):
+    obstacle = sprites.Obstacle()
+    obstacle_list.add(obstacle)
+    all_sprites.add(obstacle)
 
 while not game_done:
     for event in pygame.event.get():
@@ -118,16 +127,10 @@ while not game_done:
                 game_failed = True
 
 
-    # Win Condition
-    winCollision = pygame.sprite.spritecollide(spaceman, [spaceship], False)
-    if winCollision:
-        frames_win_condition_held += 1
-
-        if frames_win_condition_held >= frames_win_condition_max:
-            game_done = True
-    else:
-        frames_win_condition_held = 0
-
+    # Check if we've won
+    has_won = win_condition.checkWinCondition(spaceman, spaceship)
+    if has_won:
+        game_done = True
 
     screen.fill(BLACK)
 
