@@ -56,19 +56,19 @@ while not game_done:
         if images.Images.spaceship_y <= SCREEN_HEIGHT-4:
             images.Images.spaceship_y += 4
     if keys[pygame.K_a]:
-        if images.Images.lightning_x >= 4:
-            images.Images.lightning_x -= 4
+        if images.Images.man_x >= 4:
+            images.Images.man_x -= 4
     if keys[pygame.K_d]:
-        if images.Images.lightning_x <= SCREEN_WIDTH-4:
-            images.Images.lightning_x += 4
+        if images.Images.man_x <= SCREEN_WIDTH-4:
+            images.Images.man_x += 4
 
     # Player 2 Controls
     if keys[pygame.K_i]:
-        if images.Images.lightning_y >= 4:
-            images.Images.lightning_y -= 4
+        if images.Images.man_y >= 4:
+            images.Images.man_y -= 4
     if keys[pygame.K_k]:
-        if images.Images.lightning_y <= SCREEN_HEIGHT-4:
-            images.Images.lightning_y += 4
+        if images.Images.man_y <= SCREEN_HEIGHT-4:
+            images.Images.man_y += 4
     if keys[pygame.K_j]:
         if images.Images.spaceship_x >= 4:
             images.Images.spaceship_x -= 4
