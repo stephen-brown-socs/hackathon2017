@@ -25,8 +25,6 @@ jeremy_location_y = 100
 bg_x = 600
 bg_y = 360
 
-#Probably want to refactor these to a images file
-
 jeremyImage = pygame.image.load("images/jeremy.jpg")
 
 bgImage = pygame.image.load("images/circuitboard.jpg")
