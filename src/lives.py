@@ -18,4 +18,3 @@ def displayLives(screen):
         for x in range(0, Lives.lives_count):
             screen.blit(Lives.livesImg, (currentLivesPointer, Lives.lives_block_y))
             currentLivesPointer += 100
-            print("DONE WITH LIVES")
