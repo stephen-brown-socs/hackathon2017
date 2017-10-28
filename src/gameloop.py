@@ -42,6 +42,9 @@ all_sprites.add(spaceman)
 
 obstacle_list = pygame.sprite.Group()
 
+# Start Music
+pygame.mixer.music.load("ALL STAR.wav")
+pygame.mixer.music.play()
 
 while not intro_done:
     for event in pygame.event.get():
@@ -150,6 +153,7 @@ while not game_done:
     pygame.display.flip()
     clock.tick(60)
 
+pygame.mixer.music.stop()
 
 while not ending_done and not game_failed:
     for event in pygame.event.get():
