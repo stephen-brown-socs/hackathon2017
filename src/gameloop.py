@@ -47,11 +47,11 @@ print("Local check: ", local)
 #Set up sockets
 try:
     #Obtain LAN address
-    #addr = subprocess.check_output("hostname -I", shell=True)
-    addr = "127.0.0.1"
+    addr = subprocess.check_output("hostname -I", shell=True)
+    #addr = "127.0.0.1"
     print(addr.strip())
     s = socket.socket()
-    #s.bind((addr.strip(), 11000))
+    s.bind((addr.strip(), 11000))
     print(s)
 except:
     print("Socket creation failed - try running in local mode.")
@@ -59,7 +59,7 @@ except:
 
 #If networked mode and p1 selected, listen for connection from p2
 if p1:
-    s.bind(("127.0.0.1", 11000))
+    #s.bind(("127.0.0.1", 11000))
     s.listen(1)
     print("Listening for connection from p2...")
     while True:
@@ -74,10 +74,11 @@ if p1:
 #If p2, connect to other player on network
 elif p2:
 #    global peer_addr
-    s.bind(("127.0.0.1", 12000))
-    #peer_addr = input("Please enter the address of co-op partner (should be displayed on their console)")
+    #s.bind(("127.0.0.1", 12000))
+    peer_addr = input("Please enter the address of co-op partner (should be displayed on their console)")
     try:
-        s.connect(("127.0.0.1", 11000))
+        #s.connect(("127.0.0.1", 11000))
+        s.connect((peer_addr, 11000))
         s.send(b'Hello from p2!')
         #print("Connection to", peer_addr, "successful!")
         msg = s.recv(1024)
