@@ -6,6 +6,38 @@ import messages
 import lives
 import win_condition
 import sprites
+import sys
+
+
+#local flag checks if game is being played on one machine
+#False if being played over a network on two machines
+local = True
+
+#Player select
+p1 = False
+p2 = False
+
+errorstring = "\nInvalid input - please use one of the following commands instead:\npython3 gameloop.py -> launches game locally for both players\npython3 gameloop.py (-n | lan ) (p1 | p2) -> launches game over LAN as player 1 or player 2 respectively\n"
+
+#Check if additional argument is present
+try:
+    if sys.argv[1] == "lan" or sys.argv[1] == "-n":
+        local = False
+        try:
+            if sys.argv[2] == "p1":
+                p1 = True
+            elif sys.argv[2] == "p2":
+                p2 = True
+        except:
+            print(errorstring)
+            pygame.quit()
+    else:
+        print(errorstring)
+        pygame.quit()
+except:
+	pass
+		
+print("Local check: ", local)
 
 pygame.init()
 
@@ -28,6 +60,7 @@ game_done = False
 ending_done = False
 game_failed = False
 clock = pygame.time.Clock()
+
 
 #sprites
 #all_sprites list there so all sprites can be drawn with a single call
@@ -83,37 +116,58 @@ while not game_done:
                 game_done = True
 
     # Player 1 Controls
+    #Player 1 controls only enabled if local mode enabled or p1 selected in networked mode
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]:
-        if spaceship.rect.y >= 0:
-            spaceship.rect.y -= 4
-            spaceship.moving = True
-    if keys[pygame.K_s]:
-        if spaceship.rect.y <= SCREEN_HEIGHT-150:
-            spaceship.rect.y += 4
-            spaceship.moving = True
-    if keys[pygame.K_a]:
-        if spaceman.rect.x >= 0:
-            spaceman.rect.x -= 4
-    if keys[pygame.K_d]:
-        if spaceman.rect.x <= SCREEN_WIDTH-80:
-            spaceman.rect.x += 4
-
-    # Player 2 Controls
-    if keys[pygame.K_i]:
-        if spaceman.rect.y >= 4:
-            spaceman.rect.y -= 4
-    if keys[pygame.K_k]:
-        if spaceman.rect.y <= SCREEN_HEIGHT-150:
-            spaceman.rect.y += 4
-    if keys[pygame.K_j]:
-        if spaceship.rect.x >= 4:
-            spaceship.rect.x -= 4
-            spaceship.moving = True
-    if keys[pygame.K_l]:
-        if spaceship.rect.x  <= SCREEN_WIDTH-150:
-            spaceship.rect.x += 4
-            spaceship.moving = True
+    if local or p1:
+        if keys[pygame.K_w]:
+            if spaceship.rect.y >= 0:
+                spaceship.rect.y -= 4
+                spaceship.moving = True
+        if keys[pygame.K_s]:
+            if spaceship.rect.y <= SCREEN_HEIGHT-150:
+                spaceship.rect.y += 4
+                spaceship.moving = True
+        if keys[pygame.K_a]:
+            if spaceman.rect.x >= 0:
+                spaceman.rect.x -= 4
+        if keys[pygame.K_d]:
+            if spaceman.rect.x <= SCREEN_WIDTH-80:
+                spaceman.rect.x += 4
+        
+    #Player 2 controls in IKJL format only enabled if local mode enabled
+    if local:
+        # Player 2 Controls
+        if keys[pygame.K_i]:
+            if spaceman.rect.y >= 4:
+                spaceman.rect.y -= 4
+        if keys[pygame.K_k]:
+            if spaceman.rect.y <= SCREEN_HEIGHT-150:
+                spaceman.rect.y += 4
+        if keys[pygame.K_j]:
+            if spaceship.rect.x >= 4:
+                spaceship.rect.x -= 4
+                spaceship.moving = True
+        if keys[pygame.K_l]:
+            if spaceship.rect.x  <= SCREEN_WIDTH-150:
+                spaceship.rect.x += 4
+                spaceship.moving = True
+    
+    #Player 2 controls in WASD format only enabled if network mode enabled and p2 selected
+    if p2:
+        if keys[pygame.K_w]:
+            if spaceman.rect.y >= 4:
+                spaceman.rect.y -= 4
+        if keys[pygame.K_s]:
+            if spaceman.rect.y <= SCREEN_HEIGHT-150:
+                spaceman.rect.y += 4
+        if keys[pygame.K_a]:
+            if spaceship.rect.x >= 4:
+                spaceship.rect.x -= 4
+                spaceship.moving = True
+        if keys[pygame.K_d]:
+            if spaceship.rect.x  <= SCREEN_WIDTH-150:
+                spaceship.rect.x += 4
+                spaceship.moving = True
 
     # Obstacle collision
     manObstacleCollision = pygame.sprite.spritecollide(spaceman, obstacle_list, True)
