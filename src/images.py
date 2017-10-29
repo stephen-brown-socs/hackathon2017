@@ -16,7 +16,7 @@ def random_y():
 class Images:
 
     # Intro Images
-    jeremyImage = pygame.image.load("images/jeremy.jpg")
+    jeremyImage = pygame.image.load("images/mad_scientist_face.jpg")
     jeremy_x = 700
     jeremy_y = 50
 
