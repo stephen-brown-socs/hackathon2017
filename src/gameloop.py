@@ -21,6 +21,9 @@ p2 = False
 
 errorstring = "\nInvalid input - please use one of the following commands instead:\npython3 gameloop.py -> launches game locally for both players\npython3 gameloop.py (-n | lan ) (p1 | p2) -> launches game over LAN as player 1 or player 2 respectively\n"
 
+c = 0
+peer_addr = 0
+
 #Check if additional argument is present
 try:
     if sys.argv[1] == "lan" or sys.argv[1] == "-n":
@@ -47,6 +50,7 @@ try:
     addr = subprocess.check_output("hostname -I", shell=True)
     print(addr.strip())
     s = socket.socket()
+    s.setblocking(0)
     s.bind((addr.strip(), 11000))
     print(s)
 except:
@@ -58,14 +62,18 @@ if p1:
     s.listen(1)
     print("Listening for connection from p2...")
     while True:
-        c, addr = s.accept()
-        print("Connection to", addr, " successful!")
+        global c, peer_addr
+        c, peer_addr = s.accept()
+        c.send("Hello from" )
+        print("Connection to", peer_addr, "successful!")
 #If p2, connect to other player on network
 elif p2:
+    global peer_addr
     peer_addr = input("Please enter the address of co-op partner (should be displayed on their console)")
     try:
         s.connect((peer_addr, 11000))
-        print("Connection to", peer_addr, " successful!")
+        s.send("Hello from", addr, "!")
+        print("Connection to", peer_addr, "successful!")
     except:
         print("Connection failed - try running in local mode.")
         pygame.quit()
@@ -148,11 +156,12 @@ while not game_done:
             if event.key == pygame.K_ESCAPE:
                 game_done = True
 
+    #LOCAL MODE BLOCK
+    
     # Player 1 Controls
     #Player 1 controls only enabled if local mode enabled or p1 selected in networked mode
-    #P1 sends to c
     keys = pygame.key.get_pressed()
-    if local or p1:
+    if local:
         if keys[pygame.K_w]:
             if spaceship.rect.y >= 0:
                 spaceship.rect.y -= 4
@@ -169,7 +178,6 @@ while not game_done:
                 spaceman.rect.x += 4
         
     #Player 2 controls in IKJL format only enabled if local mode enabled
-    if local:
         # Player 2 Controls
         if keys[pygame.K_i]:
             if spaceman.rect.y >= 4:
@@ -185,24 +193,64 @@ while not game_done:
             if spaceship.rect.x  <= SCREEN_WIDTH-150:
                 spaceship.rect.x += 4
                 spaceship.moving = True
+          
     
-    #Player 2 controls in WASD format only enabled if network mode enabled and p2 selected
+    #NETWORK MODE BLOCK
+    #Player 1 controls in WASD format, sends input to P2
+    #P1 sends stuff over c
+    if p1:
+        if keys[pygame.K_w]:
+            if spaceship.rect.y >= 0:
+                spaceship.rect.y -= 4
+                c.send("move_ship up")
+                spaceship.moving = True
+        if keys[pygame.K_s]:
+            if spaceship.rect.y <= SCREEN_HEIGHT-150:
+                spaceship.rect.y += 4
+                c.send("move_ship down")
+                spaceship.moving = True
+        if keys[pygame.K_a]:
+            if spaceman.rect.x >= 0:
+                spaceman.rect.x -= 4
+                c.send("move_man left")
+        if keys[pygame.K_d]:
+            if spaceman.rect.x <= SCREEN_WIDTH-80:
+                spaceman.rect.x += 4
+                c.send("move_man right")
+        #Check if there are any messages received from p2
+        try:
+            msg = c.recv(1024)
+            print(msg)
+        except:
+            pass
+    
+    #Player 2 controls in WASD format, sends input to P1
     #P2 sends stuff over s
     if p2:
         if keys[pygame.K_w]:
             if spaceman.rect.y >= 4:
                 spaceman.rect.y -= 4
+                s.send("move_man up")
         if keys[pygame.K_s]:
             if spaceman.rect.y <= SCREEN_HEIGHT-150:
                 spaceman.rect.y += 4
+                s.send("move_man down")
         if keys[pygame.K_a]:
             if spaceship.rect.x >= 4:
                 spaceship.rect.x -= 4
+                s.send("move_ship left")
                 spaceship.moving = True
         if keys[pygame.K_d]:
             if spaceship.rect.x  <= SCREEN_WIDTH-150:
                 spaceship.rect.x += 4
+                s.send("move_ship right")
                 spaceship.moving = True
+        #Check if there are any messages received from p1
+        try:
+            msg = s.recv(1024)
+            print(msg)
+        except:
+            pass
 
     # Obstacle collision
     manObstacleCollision = pygame.sprite.spritecollide(spaceman, obstacle_list, True)
