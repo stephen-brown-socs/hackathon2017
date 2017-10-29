@@ -45,7 +45,7 @@ class Images:
     lightning_x = randint(0, 1000)
     lightning_y = randint(0, 500)
 
-    bgImage = pygame.image.load("images/circuitboard.jpg")
+    bgImage = pygame.image.load("images/new_bg.png")
     bgImage = pygame.transform.scale(bgImage, (1200, 720))
     bg_x = 0
     bg_y = 0
