@@ -25,6 +25,14 @@ class Images:
     battery_x = randint(0,1000)
     battery_y = randint(0, 500)
 
+    player1Img = pygame.image.load("images/controls/player1.png")
+    player1_x = 700
+    player1_y = 600
+
+    player2Img = pygame.image.load("images/controls/player2.png")
+    player2_x = 950
+    player2_y = 600
+
     sightsImg = pygame.image.load("images/sights.png")
     #sightsImg = pygame.transform.scale(sightsImg, (150, 150))
     sights_x = randint(0, 1000)
@@ -52,6 +60,8 @@ class Images:
 
 def displayIntroImages(screen):
     screen.blit(Images.jeremyImage, (Images.jeremy_x, Images.jeremy_y))
+    screen.blit(Images.player1Img, (Images.player1_x, Images.player1_y))
+    screen.blit(Images.player2Img, (Images.player2_x, Images.player2_y))
 
 def displayMainGameImages(screen):
     screen.blit(Images.bgImage, (Images.bg_x, Images.bg_y))
