@@ -59,11 +59,13 @@ if p1:
     print("Listening for connection from p2...")
     while True:
         c, addr = s.accept()
+        print("Connection to", addr, " successful!")
 #If p2, connect to other player on network
 elif p2:
     peer_addr = input("Please enter the address of co-op partner (should be displayed on their console)")
     try:
         s.connect((peer_addr, 11000))
+        print("Connection to", peer_addr, " successful!")
     except:
         print("Connection failed - try running in local mode.")
         pygame.quit()
