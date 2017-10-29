@@ -75,6 +75,8 @@ for x in range(0, NUM_OBSTACLES):
     obstacle_list.add(obstacle)
     all_sprites.add(obstacle)
 
+projectile_base_chance = 0
+
 while not game_done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -139,6 +141,9 @@ while not game_done:
         proj = sprites.Projectile()
         projectile_list.add(proj)
         all_sprites.add(proj)
+        projectile_base_chance = 0
+    else:
+        projectile_base_chance += 1
 
     #move projectiles
     for p in projectile_list:
