@@ -16,7 +16,7 @@ BLACK = (0,0,0)
 # Other Configuration Options
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 720
-NUM_OBSTACLES = 20
+NUM_OBSTACLES = 15
 screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 game_title = "FRIENDSHIP KILLER 2: ELECTRIC BOOGALOO"
 
@@ -44,6 +44,7 @@ obstacle_list = pygame.sprite.Group()
 
 # Setup sounds
 explosion_sound = pygame.mixer.Sound("music/explosion.wav")
+shock_sound = pygame.mixer.Sound("music/shock.wav")
 
 # Start Music
 pygame.mixer.music.load("music/ALL STAR.wav")
@@ -127,6 +128,7 @@ while not game_done:
     shipObstacleCollision = pygame.sprite.spritecollide(spaceship, obstacle_list, True)
 
     if not (len(manObstacleCollision) == 0) or not (len(shipObstacleCollision) == 0):
+        shock_sound.play()
         lives.Lives.lives_count -= 1
         if lives.Lives.lives_count == 0:
             game_done = True
@@ -177,6 +179,10 @@ pygame.mixer.music.stop()
 if not game_failed:
     pygame.mixer.music.load("music/Victory.mp3")
     pygame.mixer.music.play()
+
+shock_sound.stop()
+explosion_sound.stop()
+pygame.mixer.music.stop()
 
 while not ending_done and not game_failed:
 
