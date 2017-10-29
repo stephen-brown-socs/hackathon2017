@@ -59,7 +59,7 @@ except:
 
 #If networked mode and p1 selected, listen for connection from p2
 if p1:
-    s.bind(("127.0.0.1", 15000))
+    s.bind(("127.0.0.1", 11000))
     s.listen(1)
     print("Listening for connection from p2...")
     while True:
@@ -74,10 +74,10 @@ if p1:
 #If p2, connect to other player on network
 elif p2:
 #    global peer_addr
-    s.bind(("127.0.0.1", 16000))
+    s.bind(("127.0.0.1", 12000))
     #peer_addr = input("Please enter the address of co-op partner (should be displayed on their console)")
     try:
-        s.connect(("127.0.0.1", 15000))
+        s.connect(("127.0.0.1", 11000))
         s.send(b'Hello from p2!')
         #print("Connection to", peer_addr, "successful!")
         msg = s.recv(1024)
@@ -233,6 +233,23 @@ while not game_done:
         try:
             msg = s.recv(1024)
             print(msg)
+            msg = msg.decode("utf-8")
+            if "man" in msg:
+                if "up" in msg:
+                    if spaceman.rect.y >= 4:
+                        spaceman.rect.y -= 4
+                else:
+                    if spaceman.rect.y <= SCREEN_HEIGHT-150:
+                        spaceman.rect.y += 4
+            if "ship" in msg:
+                if "right" in msg:
+                    if spaceship.rect.x  <= SCREEN_WIDTH-150:
+                        spaceship.rect.x += 4
+                        spaceship.moving = True
+                else:
+                    if spaceship.rect.x >= 4:
+                        spaceship.rect.x -= 4
+                        spaceship.moving = True
         except:
             pass
     
@@ -261,6 +278,23 @@ while not game_done:
         try:
             msg = s.recv(1024)
             print(msg)
+            msg = msg.decode("utf-8")
+            if "man" in msg:
+                if "right" in msg:
+                    if spaceman.rect.x <= SCREEN_WIDTH-80:
+                        spaceman.rect.x += 4
+                else:
+                    if spaceman.rect.x >= 0:
+                        spaceman.rect.x -= 4
+            if "ship" in msg:
+                if "up" in msg:
+                    if spaceship.rect.y >= 0:
+                        spaceship.rect.y -= 4
+                        spaceship.moving = True
+                else:
+                    if spaceship.rect.y <= SCREEN_HEIGHT-150:
+                        spaceship.rect.y += 4
+                        spaceship.moving = True
         except:
             pass
 
