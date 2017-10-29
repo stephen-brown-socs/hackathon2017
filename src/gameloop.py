@@ -7,6 +7,8 @@ import lives
 import win_condition
 import sprites
 import sys
+import subprocess
+import socket
 
 
 #local flag checks if game is being played on one machine
@@ -39,6 +41,23 @@ except:
 		
 print("Local check: ", local)
 
+#Set up sockets
+try:
+    #Obtain LAN address
+    addr = subprocess.check_output("hostname -I", shell=True)
+    print(addr.strip())
+    s = socket.socket()
+    s.bind((addr.strip(), 11000))
+    print(s)
+except:
+    print("Socket creation failed - try running in local mode.")
+    pygame.quit()
+
+
+
+
+
+#Start the game!
 pygame.init()
 
 # Colour Definitions
