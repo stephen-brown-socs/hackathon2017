@@ -53,9 +53,21 @@ except:
     print("Socket creation failed - try running in local mode.")
     pygame.quit()
 
-
-
-
+#If networked mode and p1 selected, listen for connection from p2
+if p1:
+    s.listen(1)
+    print("Listening for connection from p2...")
+    while True:
+        c, addr = s.accept()
+#If p2, connect to other player on network
+elif p2:
+    peer_addr = input("Please enter the address of co-op partner (should be displayed on their console)")
+    try:
+        s.connect((peer_addr, 11000))
+    except:
+        print("Connection failed - try running in local mode.")
+        pygame.quit()
+    
 
 #Start the game!
 pygame.init()
@@ -136,6 +148,7 @@ while not game_done:
 
     # Player 1 Controls
     #Player 1 controls only enabled if local mode enabled or p1 selected in networked mode
+    #P1 sends to c
     keys = pygame.key.get_pressed()
     if local or p1:
         if keys[pygame.K_w]:
@@ -172,6 +185,7 @@ while not game_done:
                 spaceship.moving = True
     
     #Player 2 controls in WASD format only enabled if network mode enabled and p2 selected
+    #P2 sends stuff over s
     if p2:
         if keys[pygame.K_w]:
             if spaceman.rect.y >= 4:
@@ -274,5 +288,9 @@ while game_failed:
 
     pygame.display.flip()
     clock.tick(60)
+
+if not local:
+    #Close connection
+    s.close()
 
 pygame.quit()
