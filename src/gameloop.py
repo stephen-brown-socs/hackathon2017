@@ -47,11 +47,11 @@ print("Local check: ", local)
 #Set up sockets
 try:
     #Obtain LAN address
-    addr = subprocess.check_output("hostname -I", shell=True)
+    #addr = subprocess.check_output("hostname -I", shell=True)
+    addr = "127.0.0.1"
     print(addr.strip())
     s = socket.socket()
-    s.setblocking(0)
-    s.bind((addr.strip(), 11000))
+    #s.bind((addr.strip(), 11000))
     print(s)
 except:
     print("Socket creation failed - try running in local mode.")
@@ -59,32 +59,40 @@ except:
 
 #If networked mode and p1 selected, listen for connection from p2
 if p1:
+    s.bind(("127.0.0.1", 15000))
     s.listen(1)
     print("Listening for connection from p2...")
     while True:
-        try:
-#            global c, peer_addr
-            c, peer_addr = s.accept()
-            c.send("Hello from" )
-            print("Connection to", peer_addr, "successful!")
-            break
-        except:
-            pass
+#        global c, peer_addr
+        c, peer_addr = s.accept()
+        c.send(b'Hello from p1!')
+        #print("Connection to", peer_addr, "successful!")
+        msg = c.recv(1024)
+        print(msg)
+        break
+
 #If p2, connect to other player on network
 elif p2:
 #    global peer_addr
-    peer_addr = input("Please enter the address of co-op partner (should be displayed on their console)")
+    s.bind(("127.0.0.1", 16000))
+    #peer_addr = input("Please enter the address of co-op partner (should be displayed on their console)")
     try:
-        s.connect((peer_addr, 11000))
-        s.send("Hello from", addr, "!")
-        print("Connection to", peer_addr, "successful!")
+        s.connect(("127.0.0.1", 15000))
+        s.send(b'Hello from p2!')
+        #print("Connection to", peer_addr, "successful!")
+        msg = s.recv(1024)
+        print(msg)
     except:
         print("Connection failed - try running in local mode.")
         pygame.quit()
     
 
+#Sockets should be non-blocking from now on
+s.setblocking(0)
+
 #Start the game!
 pygame.init()
+print("Game started")
 
 # Colour Definitions
 WHITE = (255, 255, 255)
@@ -206,24 +214,24 @@ while not game_done:
         if keys[pygame.K_w]:
             if spaceship.rect.y >= 0:
                 spaceship.rect.y -= 4
-                c.send("move_ship up")
+                c.send(b"move ship up")
                 spaceship.moving = True
         if keys[pygame.K_s]:
             if spaceship.rect.y <= SCREEN_HEIGHT-150:
                 spaceship.rect.y += 4
-                c.send("move_ship down")
+                c.send(b"move ship down")
                 spaceship.moving = True
         if keys[pygame.K_a]:
             if spaceman.rect.x >= 0:
                 spaceman.rect.x -= 4
-                c.send("move_man left")
+                c.send(b"move man left")
         if keys[pygame.K_d]:
             if spaceman.rect.x <= SCREEN_WIDTH-80:
                 spaceman.rect.x += 4
-                c.send("move_man right")
+                c.send(b"move man right")
         #Check if there are any messages received from p2
         try:
-            msg = c.recv(1024)
+            msg = s.recv(1024)
             print(msg)
         except:
             pass
@@ -234,20 +242,20 @@ while not game_done:
         if keys[pygame.K_w]:
             if spaceman.rect.y >= 4:
                 spaceman.rect.y -= 4
-                s.send("move_man up")
+                s.send(b"move man up")
         if keys[pygame.K_s]:
             if spaceman.rect.y <= SCREEN_HEIGHT-150:
                 spaceman.rect.y += 4
-                s.send("move_man down")
+                s.send(b"move man down")
         if keys[pygame.K_a]:
             if spaceship.rect.x >= 4:
                 spaceship.rect.x -= 4
-                s.send("move_ship left")
+                s.send(b"move ship left")
                 spaceship.moving = True
         if keys[pygame.K_d]:
             if spaceship.rect.x  <= SCREEN_WIDTH-150:
                 spaceship.rect.x += 4
-                s.send("move_ship right")
+                s.send(b"move ship right")
                 spaceship.moving = True
         #Check if there are any messages received from p1
         try:
