@@ -62,13 +62,17 @@ if p1:
     s.listen(1)
     print("Listening for connection from p2...")
     while True:
-        global c, peer_addr
-        c, peer_addr = s.accept()
-        c.send("Hello from" )
-        print("Connection to", peer_addr, "successful!")
+        try:
+#            global c, peer_addr
+            c, peer_addr = s.accept()
+            c.send("Hello from" )
+            print("Connection to", peer_addr, "successful!")
+            break
+        except:
+            pass
 #If p2, connect to other player on network
 elif p2:
-    global peer_addr
+#    global peer_addr
     peer_addr = input("Please enter the address of co-op partner (should be displayed on their console)")
     try:
         s.connect((peer_addr, 11000))
